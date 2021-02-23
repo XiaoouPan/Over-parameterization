@@ -73,7 +73,7 @@ Rcpp::List huberReg(const arma::mat& X, arma::vec Y, const double alpha, const d
   double tau = constTau * mad(res);
   int ite = 1;
   while (arma::norm(res, "inf") > tol && ite <= iteMax) {
-    arma:vec grad = gradHuber(res, tau, n);
+    arma::vec grad = gradHuber(Z, res, tau, n);
     g -= n1Eta * l % grad;
     l -= n1Eta * g % grad;
     res = Z * (g % l) - Y;
