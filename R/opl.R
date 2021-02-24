@@ -14,14 +14,15 @@ beta0 = 1
 X = matrix(rnorm(n * p), n, p)
 err = rnorm(n)
 Y = beta0 + X %*% beta + err
+alpha = 0.0001
 
-fit = linearReg(X, Y, alpha = 0.01)
+fit = linearReg(X, Y, alpha = alpha)
 beta.hat = fit$coeff[-1]
 beta.hat[1:s]
 max(abs(beta.hat[-(1:s)]))
 norm(beta.hat - beta, "2")
 
-fit.huber = huberReg(X, Y, alpha = 0.01)
+fit.huber = huberReg(X, Y, alpha = alpha)
 beta.hat.huber = fit.huber$coeff[-1]
 beta.hat.huber[1:s]
 max(abs(beta.hat.huber[-(1:s)]))
